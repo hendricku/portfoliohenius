@@ -112,7 +112,7 @@ export default function Home() {
               {/* ***** FIX ON LINE 116 ***** */}
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-3 leading-tight">
                 Hello,<br />
-                I'm Henius {/* Changed ' to ' */}
+                I'm Henius {/* Changed ' to &apos; */}
               </h1>
               <p className="text-lg font-medium mb-8 text-[#2A2A2A]/90">
                 UI/UX Designer , Flutter developer {/* Updated roles */}
@@ -243,9 +243,9 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
                 viewport={{ once: true, amount: 0.5 }}
-                className="text-base text-white/90 mb-6 leading-relaxed" // Slightly less opaque text
+                className="text-base text-white/90 mb-6 leading-relaxed"
               >
-                Hello! I'm a passionate UI/UX designer and skilled Flutter developer. {/* Changed ' to ' */}
+                Hello! I&apos;m a passionate UI/UX designer and skilled Flutter developer. {/* Changed ' to &apos; */}
                 My portfolio showcases a blend of elegant, user-centric design and
                 smooth, functional Flutter applications. Explore my work where
                 creativity meets technology!
