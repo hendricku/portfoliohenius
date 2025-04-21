@@ -112,7 +112,7 @@ export default function Home() {
               {/* ***** FIX ON LINE 116 ***** */}
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-3 leading-tight">
                 Hello,<br />
-                I'm Henius {/* Changed ' to &apos; */}
+                I&apos;m Henius {/* Changed ' to &apos; */}
               </h1>
               <p className="text-lg font-medium mb-8 text-[#2A2A2A]/90">
                 UI/UX Designer , Flutter developer {/* Updated roles */}
