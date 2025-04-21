@@ -1,11 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap');
 @import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
+  --primary: #FFD700;
+  --secondary: #00CED1;
+  --text: #2A2A2A;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -19,8 +24,102 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
 }
+
+@layer components {
+  .about-card {
+    @apply bg-blue-600 rounded-3xl p-8 flex flex-col md:flex-row gap-8 items-center max-w-4xl mx-auto;
+  }
+
+  .about-image-container {
+    @apply bg-emerald-400 rounded-2xl p-4 shadow-lg flex-shrink-0;
+    width: 240px;
+    height: 240px;
+  }
+
+  .about-content {
+    @apply text-white space-y-4;
+  }
+
+  .about-title {
+    @apply text-4xl font-bold mb-2;
+  }
+
+  .about-subtitle {
+    @apply text-yellow-300 text-xl font-semibold;
+  }
+
+  .about-description {
+    @apply text-white/90 text-lg leading-relaxed max-w-2xl;
+  }
+
+  .about-buttons {
+    @apply flex gap-4 mt-6;
+  }
+
+  .about-button {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+  }
+}
+
+  .mobile-menu {
+    @apply fixed top-0 left-0 w-full h-screen bg-white/95 backdrop-blur-lg transform transition-transform duration-300 ease-in-out;
+  }
+
+  .mobile-menu-items {
+    @apply flex flex-col items-center justify-center h-full gap-8 text-2xl font-['Montserrat'];
+  }
+
+  .burger-menu {
+    @apply hidden md:hidden cursor-pointer z-50;
+  }
+
+  @media (max-width: 768px) {
+    .burger-menu {
+      @apply block;
+    }
+    
+    .desktop-menu {
+      @apply hidden;
+    }
+  }
+
+  .nav-link {
+    position: relative;
+    color: #2A2A2A;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .container-custom {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-custom {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-custom {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+/* Remove extra closing brace as it has no matching opening brace */
