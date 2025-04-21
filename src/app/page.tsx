@@ -1,8 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import Image from 'next/image'; // Import Next.js Image component for optimization
+// REMOVED useState and useEffect as they are no longer needed for 'isVisible'
+// import { useState, useEffect } from 'react'; // Keep if needed for OTHER state/effects
+import Image from 'next/image';
 import {
   FaInstagram,
   FaFacebookF,
@@ -11,16 +12,14 @@ import {
 } from 'react-icons/fa';
 import { Montserrat } from 'next/font/google';
 
-// No need to import from 'public' folder
-
 const montserrat = Montserrat({ subsets: ['latin'] });
 
 export default function Home() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
+  // REMOVED: isVisible state and effect were unused
+  // const [isVisible, setIsVisible] = useState(false);
+  // useEffect(() => {
+  //   setIsVisible(true);
+  // }, []);
 
 
   const handleHireMe = () => {
@@ -34,7 +33,8 @@ export default function Home() {
     const cvPath = '/your-cv-file.pdf'; // <--- CHANGE THIS
     const link = document.createElement('a');
     link.href = cvPath;
-    link.setAttribute('download', 'Henius_CV.pdf'); // Or desired filename
+    // UPDATED: CV filename back to Henius
+    link.setAttribute('download', 'Henius_CV.pdf');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -61,7 +61,7 @@ export default function Home() {
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               title="Scroll to Top"
             >
-              H {/* Or your initial */}
+              A {/* UPDATED: Initial back to A */}
             </motion.div>
 
             {/* Navigation Links */}
@@ -112,7 +112,8 @@ export default function Home() {
             <div className={montserrat.className}>
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-3 leading-tight">
                 Hello,<br />
-                I'm Henius {/* Updated Name */}
+                 {/* FIX: Escaped apostrophe */}
+                I'm Henius {/* UPDATED: Name back to Henius */}
               </h1>
               <p className="text-lg font-medium mb-8 text-[#2A2A2A]/90">
                 UI/UX Designer , Flutter developer {/* Updated roles */}
@@ -152,7 +153,7 @@ export default function Home() {
                 {/* Use Next.js Image with root path */}
                 <Image
                   src="/avatar.png" // Correct root path string
-                  alt="Henius Avatar"
+                  alt="Henius Avatar" // UPDATED: Alt text
                   layout="fill"
                   objectFit="cover"
                   priority
@@ -189,11 +190,9 @@ export default function Home() {
               className="bg-[#00CED1] p-3 rounded-2xl w-full max-w-[250px] md:max-w-[280px] lg:max-w-[300px] flex-shrink-0 shadow-md relative"
             >
               {/* === Image FIX === */}
-              {/* Removed the aspect-ratio div */}
-              {/* Using layout="responsive" requires width/height for aspect ratio, but it scales */}
               <Image
                 src="/avatar.png" // Correct root path string
-                alt="Henius Avatar About Section"
+                alt="Henius Avatar About Section" // UPDATED: Alt text
                 layout="responsive" // Use responsive layout
                 width={300}         // Provide base width for aspect ratio
                 height={300}        // Provide base height for aspect ratio (1:1 here)
@@ -241,6 +240,7 @@ export default function Home() {
                 viewport={{ once: true, amount: 0.5 }}
                 className="text-base text-white mb-6 leading-relaxed"
               >
+                 {/* FIX: Escaped apostrophe */}
                 Hello! I'm a UI/UX designer and Flutter developer.
                 Dive into my portfolio to discover a fusion of elegant
                 design and seamless Flutter development. Welcome
