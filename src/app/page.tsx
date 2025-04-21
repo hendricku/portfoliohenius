@@ -1,8 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-// REMOVED useState and useEffect as they are no longer needed for 'isVisible'
-// import { useState, useEffect } from 'react'; // Keep if needed for OTHER state/effects
 import Image from 'next/image';
 import {
   FaInstagram,
@@ -15,26 +13,24 @@ import { Montserrat } from 'next/font/google';
 const montserrat = Montserrat({ subsets: ['latin'] });
 
 export default function Home() {
-  // REMOVED: isVisible state and effect were unused
-  // const [isVisible, setIsVisible] = useState(false);
-  // useEffect(() => {
-  //   setIsVisible(true);
-  // }, []);
-
 
   const handleHireMe = () => {
     console.log('Hire Me clicked!');
-    // Example: window.location.href = 'mailto:youremail@example.com?subject=Hiring Inquiry';
+    // Example action: Open mail client
+    // window.location.href = 'mailto:youremail@example.com?subject=Hiring Inquiry';
+    // Or scroll to contact section:
+    // document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleDownloadCV = () => {
     console.log('Download CV clicked!');
-    // IMPORTANT: Replace '/your-cv-file.pdf' with the actual path in your public folder
-    const cvPath = '/your-cv-file.pdf'; // <--- CHANGE THIS
+    // IMPORTANT: Replace '/your-cv-file.pdf' with the actual path to your CV
+    // The file should be placed in the `public` folder of your Next.js project.
+    const cvPath = '/your-cv-file.pdf'; // <--- CHANGE THIS TO YOUR CV FILE PATH (e.g., '/Henius_CV.pdf')
     const link = document.createElement('a');
     link.href = cvPath;
     // UPDATED: CV filename back to Henius
-    link.setAttribute('download', 'Henius_CV.pdf');
+    link.setAttribute('download', 'Henius_CV.pdf'); // Suggested filename for the user
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -42,7 +38,7 @@ export default function Home() {
 
 
   return (
-    // Main container with yellow background
+    // Main container with yellow background and dark text
     <main className="min-h-screen bg-[#FFD700] text-[#2A2A2A]">
 
       {/* ===== Navigation ===== */}
@@ -51,45 +47,48 @@ export default function Home() {
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
+          // Blurred background navbar container
           className="max-w-6xl mx-auto bg-white/90 backdrop-blur-md px-6 sm:px-8 py-3 sm:py-4 rounded-2xl shadow-lg"
         >
           <div className="flex justify-between items-center">
              {/* Logo/Brand */}
             <motion.div
               whileHover={{ scale: 1.1, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
               className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FFD700] rounded-xl flex items-center justify-center font-bold text-xl sm:text-2xl text-[#2A2A2A] shadow-md cursor-pointer"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              title="Scroll to Top"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} // Scrolls to top smoothly
+              title="Scroll to Top" // Tooltip for accessibility
             >
               A {/* UPDATED: Initial back to A */}
             </motion.div>
 
-            {/* Navigation Links */}
+            {/* Navigation Links (Desktop) */}
             <div className="hidden sm:flex gap-6 md:gap-8">
               {['Home', 'About', 'Projects', 'Contact'].map((item, index) => (
                 <motion.a
                   key={item}
-                  href={`#${item.toLowerCase()}`}
+                  href={`#${item.toLowerCase()}`} // Links to section IDs
                   className="relative text-[#2A2A2A] font-medium text-base sm:text-lg hover:text-[#FFD700] transition-colors duration-200 group"
                   whileHover={{ scale: 1.05 }}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
                     duration: 0.3,
-                    delay: index * 0.1 + 0.3,
+                    delay: index * 0.1 + 0.3, // Staggered animation
                     type: 'spring',
                     stiffness: 300
                   }}
                 >
                   {item}
-                  {/* Underline animation */}
+                  {/* Animated underline effect on hover */}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#FFD700] transition-all duration-300 group-hover:w-full"></span>
                 </motion.a>
               ))}
             </div>
-             {/* Basic Mobile Menu Button Placeholder */}
+
+             {/* Basic Mobile Menu Button Placeholder (Needs functionality) */}
              <div className="sm:hidden">
-               <button className="text-[#2A2A2A] focus:outline-none" aria-label="Open menu">
+               <button className="text-[#2A2A2A] focus:outline-none p-2" aria-label="Open menu">
                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                </button>
              </div>
@@ -99,26 +98,27 @@ export default function Home() {
       {/* ===== END OF Navigation ===== */}
 
 
-      {/* Hero Section */}
-      <section id="home" className="pt-32 sm:pt-40 pb-20 px-4 sm:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-around gap-12 max-w-6xl mx-auto">
+      {/* ===== Hero Section ===== */}
+      <section id="home" className="pt-32 sm:pt-40 pb-20 px-4 sm:px-8 flex items-center min-h-screen"> {/* Added min-h-screen and flex align */}
+        <div className="flex flex-col md:flex-row items-center justify-around gap-12 max-w-6xl mx-auto w-full"> {/* Added w-full */}
           {/* Left Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-center md:text-left md:w-1/2 z-10 order-2 md:order-1"
+            className="text-center md:text-left md:w-1/2 lg:w-5/12 z-10 order-2 md:order-1" // Adjusted width for balance
           >
             <div className={montserrat.className}>
+              {/* ***** FIX ON LINE 116 ***** */}
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-3 leading-tight">
                 Hello,<br />
-                 {/* FIX: Escaped apostrophe */}
-                I'm Henius {/* UPDATED: Name back to Henius */}
+                I'm Henius {/* Changed ' to ' */}
               </h1>
               <p className="text-lg font-medium mb-8 text-[#2A2A2A]/90">
                 UI/UX Designer , Flutter developer {/* Updated roles */}
               </p>
             </div>
+            {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <motion.button
                 whileHover={{ scale: 1.05, boxShadow: "0px 5px 15px rgba(42, 42, 42, 0.3)" }}
@@ -144,40 +144,43 @@ export default function Home() {
              initial={{ opacity: 0, scale: 0.5 }}
              animate={{ opacity: 1, scale: 1 }}
              transition={{ duration: 0.8, delay: 0.3, type: "spring", stiffness: 120 }}
+             // Responsive sizing for the image container
              className="relative w-[280px] h-[320px] sm:w-[320px] sm:h-[360px] md:w-[350px] md:h-[400px] lg:w-[400px] lg:h-[450px] mt-8 md:mt-0 order-1 md:order-2"
            >
-            {/* Background shape */}
+            {/* Background shape with slight rotation */}
             <div className="absolute inset-0 bg-[#00CED1] rounded-2xl shadow-lg transform -rotate-3"></div>
-             {/* Image container */}
+             {/* Image container with white background */}
              <div className="absolute inset-4 sm:inset-5 bg-white rounded-xl overflow-hidden shadow-inner">
-                {/* Use Next.js Image with root path */}
+                {/* Next.js Image Component */}
                 <Image
-                  src="/avatar.png" // Correct root path string
+                  // Ensure 'avatar.png' is in the /public folder
+                  src="/avatar.png"
                   alt="Henius Avatar" // UPDATED: Alt text
-                  layout="fill"
-                  objectFit="cover"
-                  priority
-                  className="transform scale-105"
+                  layout="fill" // Fills the parent container
+                  objectFit="cover" // Covers the container, may crop
+                  priority // Prioritize loading this image (LCP)
+                  className="transform scale-105" // Slight zoom effect
                 />
              </div>
-             {/* Optional: Add initials/logo to shirt */}
-             <div className="absolute bottom-[25%] left-[50%] transform -translate-x-1/2 text-[#FFD700] font-bold text-3xl z-10 opacity-80 pointer-events-none">
+             {/* Optional: VDC overlay */}
+             <div className="absolute bottom-[25%] left-[50%] transform -translate-x-1/2 text-[#FFD700] font-black text-3xl z-10 opacity-80 pointer-events-none drop-shadow-md">
                VDC
              </div>
           </motion.div>
         </div>
       </section>
+      {/* ===== END OF Hero Section ===== */}
 
 
       {/* ===== UPDATED ABOUT SECTION ===== */}
-      <section id="about" className="py-20 px-4 md:px-8">
+      <section id="about" className="py-20 px-4 md:px-8 bg-gray-50"> {/* Added a subtle background color */}
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }} // Animate when section scrolls into view
             transition={{ duration: 0.8 }}
-            viewport={{ once: true, amount: 0.2 }}
-            // Main blue card styling remains the same
+            viewport={{ once: true, amount: 0.2 }} // Trigger animation once, when 20% visible
+            // Main blue card styling
             className="bg-blue-600 p-8 md:p-12 rounded-3xl flex flex-col md:flex-row items-center gap-8 md:gap-12 shadow-xl overflow-hidden"
           >
             {/* === Image Container === */}
@@ -191,16 +194,17 @@ export default function Home() {
             >
               {/* === Image FIX === */}
               <Image
-                src="/avatar.png" // Correct root path string
+                // Ensure 'avatar.png' is in the /public folder
+                src="/avatar.png"
                 alt="Henius Avatar About Section" // UPDATED: Alt text
-                layout="responsive" // Use responsive layout
-                width={300}         // Provide base width for aspect ratio
-                height={300}        // Provide base height for aspect ratio (1:1 here)
-                objectFit="cover"   // Keep object-fit
-                className="rounded-xl" // Keep rounded corners on the image itself
+                layout="responsive" // Responsive layout based on width/height ratio
+                width={300}         // Base width for aspect ratio (e.g., 1:1)
+                height={300}        // Base height for aspect ratio
+                objectFit="cover"   // Covers the container
+                className="rounded-xl" // Rounded corners on the image itself
               />
-              {/* VDC overlay */}
-              <div className="absolute bottom-[25%] left-[50%] transform -translate-x-1/2 text-yellow-400 font-bold text-2xl z-10 opacity-80 pointer-events-none">
+              {/* VDC overlay for About section image */}
+              <div className="absolute bottom-[25%] left-[50%] transform -translate-x-1/2 text-yellow-400 font-black text-2xl z-10 opacity-80 pointer-events-none drop-shadow-sm">
                 VD<br/>C
               </div>
             </motion.div> {/* End of Image Container */}
@@ -224,7 +228,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
                 viewport={{ once: true, amount: 0.5 }}
-                // Use flexbox for horizontal layout, center on mobile, start on md+, wrap if needed
+                // Flexbox for horizontal layout, center on mobile, start on md+, wrap if needed
                 className="mb-5 flex flex-wrap items-center justify-center md:justify-start gap-x-3 gap-y-1"
               >
                 <p className="text-lg font-semibold text-[#FFD700]">UI/UX Designer</p>
@@ -233,18 +237,18 @@ export default function Home() {
                 <p className="text-lg font-semibold text-[#FFD700]">Flutter Developer</p>
               </motion.div> {/* End of Subtitle Container */}
 
+               {/* ***** FIX ON LINE 244 ***** */}
               <motion.p
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
                 viewport={{ once: true, amount: 0.5 }}
-                className="text-base text-white mb-6 leading-relaxed"
+                className="text-base text-white/90 mb-6 leading-relaxed" // Slightly less opaque text
               >
-                 {/* FIX: Escaped apostrophe */}
-                Hello! I'm a UI/UX designer and Flutter developer.
-                Dive into my portfolio to discover a fusion of elegant
-                design and seamless Flutter development. Welcome
-                to a world where creativity meets functionality!
+                Hello! I'm a passionate UI/UX designer and skilled Flutter developer. {/* Changed ' to ' */}
+                My portfolio showcases a blend of elegant, user-centric design and
+                smooth, functional Flutter applications. Explore my work where
+                creativity meets technology!
               </motion.p>
 
               {/* Button Container */}
@@ -255,8 +259,9 @@ export default function Home() {
                 viewport={{ once: true, amount: 0.5 }}
                 className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
               >
+                 {/* Consistent button styling */}
                 <motion.button
-                  whileHover={{ scale: 1.05, boxShadow: "0px 0px 12px rgba(0, 206, 209, 0.6)" }}
+                  whileHover={{ scale: 1.05, boxShadow: "0px 0px 12px rgba(0, 206, 209, 0.6)" }} // Use accent color for shadow
                   whileTap={{ scale: 0.95 }}
                   onClick={handleHireMe}
                   className="px-8 py-3 bg-black text-white rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-300 shadow-md"
@@ -264,7 +269,7 @@ export default function Home() {
                   Hire me
                 </motion.button>
                 <motion.button
-                  whileHover={{ scale: 1.05, boxShadow: "0px 0px 12px rgba(0, 206, 209, 0.6)" }}
+                  whileHover={{ scale: 1.05, boxShadow: "0px 0px 12px rgba(0, 206, 209, 0.6)" }} // Use accent color for shadow
                   whileTap={{ scale: 0.95 }}
                   onClick={handleDownloadCV}
                   className="px-8 py-3 bg-black text-white rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-300 shadow-md"
@@ -280,27 +285,29 @@ export default function Home() {
       {/* ===== END OF UPDATED ABOUT SECTION ===== */}
 
 
-      {/* Placeholder for Projects Section */}
+      {/* ===== Placeholder for Projects Section ===== */}
       <section id="projects" className="min-h-screen bg-gray-100 flex items-center justify-center py-20 px-4 md:px-8">
-          <h2 className="text-4xl font-bold text-gray-700">Projects Section Coming Soon...</h2>
+          <h2 className="text-4xl font-bold text-gray-700 text-center">Projects Section<br/>Coming Soon...</h2>
       </section>
 
-      {/* Placeholder for Contact Section */}
+      {/* ===== Placeholder for Contact Section ===== */}
       <section id="contact" className="min-h-screen bg-[#FFD700] flex items-center justify-center py-20 px-4 md:px-8">
-           <h2 className="text-4xl font-bold text-[#2A2A2A]">Contact Section Coming Soon...</h2>
+           <h2 className="text-4xl font-bold text-[#2A2A2A] text-center">Contact Section<br/>Coming Soon...</h2>
       </section>
 
 
-      {/* Floating Social Bar */}
+      {/* ===== Floating Social Media Bar ===== */}
       <div className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 z-40">
         <motion.div
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.0 }}
-          className="flex flex-col gap-3 md:gap-4"
+          transition={{ duration: 0.8, delay: 1.0 }} // Delayed entrance animation
+          className="flex flex-col gap-3 md:gap-4" // Spacing between icons
         >
           {[
-            { icon: <FaInstagram className="text-xl" />, color: '#E1306C', label: 'Instagram', url: '#' }, // Add your actual URLs
+            // Define social media links here
+            // IMPORTANT: Replace '#' with your actual profile URLs
+            { icon: <FaInstagram className="text-xl" />, color: '#E1306C', label: 'Instagram', url: '#' },
             { icon: <FaFacebookF className="text-xl" />, color: '#1877F2', label: 'Facebook', url: '#' },
             { icon: <FaTwitter className="text-xl" />, color: '#1DA1F2', label: 'Twitter', url: '#' },
             { icon: <FaYoutube className="text-xl" />, color: '#FF0000', label: 'YouTube', url: '#' }
@@ -308,12 +315,18 @@ export default function Home() {
             <motion.a
               key={idx}
               href={item.url} // Use the actual URL
-              target="_blank"
-              rel="noopener noreferrer"
-              title={item.label}
-              whileHover={{ scale: 1.15, x: -8, backgroundColor: item.color, color: '#FFFFFF' }}
+              target="_blank" // Open in new tab
+              rel="noopener noreferrer" // Security best practice
+              title={item.label} // Tooltip for accessibility
+              whileHover={{
+                scale: 1.15,
+                x: -8, // Move left slightly on hover
+                backgroundColor: item.color, // Change background to brand color
+                color: '#FFFFFF' // Change icon color to white
+               }}
               whileTap={{ scale: 0.95 }}
-              className="w-10 h-10 md:w-12 md:h-12 bg-white shadow-lg rounded-full flex items-center justify-center text-[#2A2A2A] transition-all duration-300 ease-in-out"
+              // Styling for each icon button
+              className="w-10 h-10 md:w-12 md:h-12 bg-white shadow-lg rounded-full flex items-center justify-center text-[#2A2A2A] transition-all duration-300 ease-in-out cursor-pointer"
             >
               {item.icon}
             </motion.a>
