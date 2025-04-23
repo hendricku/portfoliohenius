@@ -32,7 +32,7 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             className="inline-block mb-4 px-6 py-2 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 rounded-full backdrop-blur-sm border border-white/5"
           >
-            <span className="text-indigo-300 font-medium">Let's Connect</span>
+            <span className="text-indigo-300 font-medium">Let&apos;s Connect</span>
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
