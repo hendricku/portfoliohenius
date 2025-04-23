@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   FaInstagram,
   FaFacebookF,
@@ -49,8 +50,9 @@ export default function Home() {
               H
             </motion.div>
 
+        
             <div className="hidden sm:flex gap-6 md:gap-8">
-              {['Home', 'About', 'Projects', 'Contact'].map((item, index) => (
+              {['Home', 'About', 'Services', 'Contact'].map((item, index) => (
                 <motion.a
                   key={item}
                   href={`#${item.toLowerCase()}`} 
@@ -69,6 +71,22 @@ export default function Home() {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#FFD700] transition-all duration-300 group-hover:w-full"></span>
                 </motion.a>
               ))}
+              <Link href="/projects" className="relative text-[#2A2A2A] font-medium text-base sm:text-lg hover:text-[#FFD700] transition-colors duration-200 group">
+                <motion.span
+                  whileHover={{ scale: 1.05 }}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.3,
+                    delay: 0.5,
+                    type: 'spring',
+                    stiffness: 300
+                  }}
+                >
+                  Projects
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#FFD700] transition-all duration-300 group-hover:w-full"></span>
+                </motion.span>
+              </Link>
             </div>
 
              <div className="sm:hidden">
@@ -99,18 +117,26 @@ export default function Home() {
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: "0px 5px 15px rgba(42, 42, 42, 0.3)" }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleHireMe}
-                className="px-8 py-3 bg-[#2A2A2A] text-white rounded-lg font-semibold hover:bg-black transition-colors duration-300 shadow-md"
+                className="px-8 py-3 bg-[#2A2A2A] text-white rounded-full font-semibold
+                  transform hover:-translate-y-1 transition-all duration-300
+                  border-b-[6px] border-black/50 hover:border-b-4
+                  shadow-[0_8px_0_rgba(0,206,209,0.3)] hover:shadow-[0_6px_0_rgba(0,206,209,0.4)]
+                  active:border-b-0 active:translate-y-2 active:shadow-none"
               >
                 Hire me
               </motion.button>
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: "0px 5px 15px rgba(42, 42, 42, 0.3)" }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleDownloadCV}
-                className="px-8 py-3 bg-[#2A2A2A] text-white rounded-lg font-semibold hover:bg-black transition-colors duration-300 shadow-md"
+                className="px-8 py-3 bg-[#2A2A2A] text-white rounded-full font-semibold
+                  transform hover:-translate-y-1 transition-all duration-300
+                  border-b-[6px] border-black/50 hover:border-b-4
+                  shadow-[0_8px_0_rgba(0,206,209,0.3)] hover:shadow-[0_6px_0_rgba(0,206,209,0.4)]
+                  active:border-b-0 active:translate-y-2 active:shadow-none"
               >
                 Download CV
               </motion.button>
@@ -141,14 +167,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="py-20 px-4 md:px-8 bg-gray-50">
+      <section id="about" className="py-20 px-4 md:px-8 bg-gradient-to-b from-gray-50 to-gray-100">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true, amount: 0.2 }}
-            className="bg-blue-600 p-8 md:p-12 rounded-3xl flex flex-col md:flex-row items-center gap-8 md:gap-12 shadow-xl overflow-hidden"
+            className="bg-blue-600 p-8 md:p-12 rounded-3xl flex flex-col md:flex-row items-center gap-8 md:gap-12 shadow-2xl overflow-hidden
+            relative before:absolute before:inset-0 before:bg-[url('/path-pattern.svg')] before:opacity-10 before:z-0"
           >
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -218,7 +245,12 @@ export default function Home() {
                   whileHover={{ scale: 1.05, boxShadow: "0px 0px 12px rgba(0, 206, 209, 0.6)" }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleHireMe}
-                  className="px-8 py-3 bg-black text-white rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-300 shadow-md"
+                  className="px-8 py-3 bg-[#FFD700] text-black rounded-full font-semibold
+                    transform hover:-translate-y-1 transition-all duration-300
+                    border-b-[6px] border-[#B8860B] hover:border-b-4
+                    shadow-[0_8px_0_rgba(0,206,209,0.3)] hover:shadow-[0_6px_0_rgba(0,206,209,0.4)]
+                    active:border-b-0 active:translate-y-2 active:shadow-none
+                    hover:bg-[#FFDF33]"
                 >
                   Hire me
                 </motion.button>
@@ -226,7 +258,12 @@ export default function Home() {
                   whileHover={{ scale: 1.05, boxShadow: "0px 0px 12px rgba(0, 206, 209, 0.6)" }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleDownloadCV}
-                  className="px-8 py-3 bg-black text-white rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-300 shadow-md"
+                  className="px-8 py-3 bg-[#FFD700] text-black rounded-full font-semibold
+                    transform hover:-translate-y-1 transition-all duration-300
+                    border-b-[6px] border-[#B8860B] hover:border-b-4
+                    shadow-[0_8px_0_rgba(0,206,209,0.3)] hover:shadow-[0_6px_0_rgba(0,206,209,0.4)]
+                    active:border-b-0 active:translate-y-2 active:shadow-none
+                    hover:bg-[#FFDF33]"
                 >
                   Download CV
                 </motion.button>
@@ -237,15 +274,20 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="bg-[#FF6B00] py-16 px-4 md:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8">
+      <section id="services" className="bg-gradient-to-br from-[#FF6B00] via-[#FF8533] to-[#FFA500]  py-20 px-4 md:px-8 relative overflow-hidden">
+        {/* Add decorative elements */}
+        <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
+        <div className="absolute -top-20 -right-20 w-64 h-64 bg-yellow-300 rounded-full blur-3xl opacity-20"></div>
+        <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-purple-500 rounded-full blur-3xl opacity-20"></div>
+
+        <div className="max-w-6xl mx-auto relative">
+          <div className="text-center mb-12">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="text-3xl font-bold text-black"
+              className="text-4xl md:text-5xl font-bold text-white mb-4"
             >
               Services
             </motion.h2>
@@ -253,76 +295,86 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-black/80 mt-2"
+              className="text-white/90 mt-2 text-lg max-w-2xl mx-auto"
             >
               Embark on a journey of digital transformation with services that blend design
               innovation with cutting-edge development expertise.
             </motion.p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-8">
             {/* UI/UX Design Card */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              whileHover={{ y: -5 }}
+              whileHover={{ y: -5, scale: 1.02 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="bg-[#8A2BE2] p-6 rounded-2xl shadow-lg relative overflow-hidden"
+              className="bg-gradient-to-br from-[#8A2BE2] to-[#9945FF] p-8 rounded-3xl shadow-2xl relative overflow-hidden
+                group hover:shadow-[0_20px_40px_rgba(138,43,226,0.3)] transition-all duration-500"
             >
-              <div className="absolute top-6 left-6 w-8 h-8 bg-[#32CD32] rounded-full flex items-center justify-center text-xl font-bold text-white">
+              <div className="absolute top-0 left-0 w-full h-full bg-[url('/circuit-pattern.svg')] opacity-5 group-hover:opacity-10 transition-opacity"></div>
+              <div className="absolute top-6 left-6 w-12 h-12 bg-gradient-to-br from-[#32CD32] to-[#228B22] rounded-2xl flex items-center justify-center text-2xl font-bold text-white transform -rotate-6">
                 1
               </div>
-              <div className="pt-16">
-                <h3 className="text-2xl font-bold text-white mb-4">UI/UX Designer</h3>
-                <p className="text-white/90 mb-4">
+              <div className="pt-20">
+                <h3 className="text-3xl font-bold text-white mb-4">UI/UX Designer</h3>
+                <p className="text-white/90 mb-6 text-lg">
                   Crafting user-centric interfaces. From wireframes to high-fidelity mockups, 
                   I bring your vision to life with elegant design solutions.
                 </p>
-                <div className="flex gap-2 mb-6">
-                  <span className="px-3 py-1 bg-white/10 rounded-full text-white text-sm">Figma</span>
-                  <span className="px-3 py-1 bg-white/10 rounded-full text-white text-sm">Framer</span>
+                <div className="flex gap-3 mb-8">
+                  <span className="px-4 py-2 bg-white/10 rounded-xl text-white backdrop-blur-sm">Figma</span>
+                  <span className="px-4 py-2 bg-white/10 rounded-xl text-white backdrop-blur-sm">Framer</span>
                 </div>
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.05, boxShadow: "0px 0px 20px rgba(255, 215, 0, 0.4)" }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-6 py-2 bg-[#FFD700] text-black rounded-full font-medium text-sm"
+                  className="px-8 py-3 bg-[#FFD700] text-black rounded-xl font-semibold
+                    transform hover:-translate-y-1 transition-all duration-300
+                    border-b-[6px] border-[#B8860B] hover:border-b-4
+                    shadow-lg hover:shadow-xl active:border-b-0 active:translate-y-2"
                 >
                   Learn More
                 </motion.button>
               </div>
             </motion.div>
 
-            {/* Frontend Development Card */}
+            {/* Frontend Development Card - Apply similar styles */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              whileHover={{ y: -5 }}
+              whileHover={{ y: -5, scale: 1.02 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="bg-[#8A2BE2] p-6 rounded-2xl shadow-lg relative overflow-hidden"
+              className="bg-gradient-to-br from-[#8A2BE2] to-[#9945FF] p-8 rounded-3xl shadow-2xl relative overflow-hidden
+                group hover:shadow-[0_20px_40px_rgba(138,43,226,0.3)] transition-all duration-500"
             >
-              <div className="absolute top-6 left-6 w-8 h-8 bg-[#32CD32] rounded-full flex items-center justify-center text-xl font-bold text-white">
+              {/* Similar structure as above with updated content */}
+              <div className="absolute top-0 left-0 w-full h-full bg-[url('/code-pattern.svg')] opacity-5 group-hover:opacity-10 transition-opacity"></div>
+              <div className="absolute top-6 left-6 w-12 h-12 bg-gradient-to-br from-[#32CD32] to-[#228B22] rounded-2xl flex items-center justify-center text-2xl font-bold text-white transform -rotate-6">
                 2
               </div>
-              <div className="pt-16">
-                <h3 className="text-2xl font-bold text-white mb-4">Frontend Developer</h3>
-                <p className="text-white/90 mb-4">
+              <div className="pt-20">
+                <h3 className="text-3xl font-bold text-white mb-4">Frontend Developer</h3>
+                <p className="text-white/90 mb-6 text-lg">
                   Building web apps with Frontend tech. Seamless user experiences, 
                   responsive designs, and clean code are my specialties.
                 </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="px-3 py-1 bg-white/10 rounded-full text-white text-sm">HTML</span>
-                  <span className="px-3 py-1 bg-white/10 rounded-full text-white text-sm">CSS</span>
-                  <span className="px-3 py-1 bg-white/10 rounded-full text-white text-sm">JavaScript</span>
-                  <span className="px-3 py-1 bg-white/10 rounded-full text-white text-sm">Next.js</span>
-                  <span className="px-3 py-1 bg-white/10 rounded-full text-white text-sm">Laravel</span>
-                  <span className="px-3 py-1 bg-white/10 rounded-full text-white text-sm">React</span>
+                <div className="flex flex-wrap gap-3 mb-8">
+                  {['HTML', 'CSS', 'JavaScript', 'Next.js', 'Laravel', 'React'].map((tech, index) => (
+                    <span key={index} className="px-4 py-2 bg-white/10 rounded-xl text-white backdrop-blur-sm">
+                      {tech}
+                    </span>
+                  ))}
                 </div>
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.05, boxShadow: "0px 0px 20px rgba(255, 215, 0, 0.4)" }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-6 py-2 bg-[#FFD700] text-black rounded-full font-medium text-sm"
+                  className="px-8 py-3 bg-[#FFD700] text-black rounded-xl font-semibold
+                    transform hover:-translate-y-1 transition-all duration-300
+                    border-b-[6px] border-[#B8860B] hover:border-b-4
+                    shadow-lg hover:shadow-xl active:border-b-0 active:translate-y-2"
                 >
                   Learn More
                 </motion.button>
@@ -332,8 +384,39 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" className="min-h-screen bg-[#FFD700] flex items-center justify-center py-20 px-4 md:px-8">
-           <h2 className="text-4xl font-bold text-[#2A2A2A] text-center">Contact Section<br/>Coming Soon...</h2>
+      <section id="contact" className="min-h-screen bg-[#00FF7F] flex flex-col items-center justify-center py-20 px-4 md:px-8">
+        <motion.h2 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-10 max-w-4xl"
+        >
+          If You have any Query or Project ideas feel free to
+        </motion.h2>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="relative mt-8"
+        >
+          <Link href="/contact">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-16 py-6 bg-[#FFD700] text-black text-3xl md:text-4xl font-bold rounded-full
+                transform hover:-translate-y-1 transition-all duration-300
+                border-b-[8px] border-[#B8860B] hover:border-b-6
+                shadow-[0_12px_0_rgb(0,0,0,0.3)] hover:shadow-[0_8px_0_rgb(0,0,0,0.3)]
+                active:border-b-0 active:translate-y-3 active:shadow-none"
+            >
+              Contact me
+            </motion.button>
+          </Link>
+          {/* Larger shadow overlay */}
+          <div className="absolute -bottom-4 left-0 right-0 h-6 bg-black/20 rounded-full blur-md -z-10"></div>
+        </motion.div>
       </section>
 
       <div className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 z-40">
