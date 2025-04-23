@@ -48,7 +48,7 @@ export default function Contact() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="text-indigo-100/80 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
           >
-            Have a project in mind? Let's create something extraordinary together.
+            Have a project in mind? Let&apos;s create something extraordinary together.
           </motion.p>
         </div>
 
