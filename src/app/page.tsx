@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 import {
   FaInstagram,
   FaFacebookF,
@@ -14,7 +15,8 @@ import { Montserrat } from 'next/font/google';
 const montserrat = Montserrat({ subsets: ['latin'] });
 
 export default function Home() {
-
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
   const handleHireMe = () => {
     console.log('Hire Me clicked!');
   };
@@ -90,11 +92,51 @@ export default function Home() {
             </div>
 
              <div className="sm:hidden">
-               <button className="text-[#2A2A2A] focus:outline-none p-2" aria-label="Open menu">
-                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+               <button 
+                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                 className="text-[#2A2A2A] focus:outline-none p-2"
+                 aria-label="Toggle menu"
+               >
+                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                 </svg>
                </button>
              </div>
           </div>
+
+          {/* Mobile Menu */}
+          <motion.div
+            initial={false}
+            animate={{
+              height: isMobileMenuOpen ? 'auto' : 0,
+              opacity: isMobileMenuOpen ? 1 : 0
+            }}
+            transition={{ duration: 0.3 }}
+            className={`sm:hidden overflow-hidden mt-4 ${isMobileMenuOpen ? 'block' : 'hidden'}`}
+          >
+            <div className="py-2">
+              {['Home', 'About', 'Services', 'Contact'].map((item, index) => (
+                <motion.a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className="block py-2 px-4 text-[#2A2A2A] hover:bg-[#FFD700]/10 rounded-lg transition-colors duration-200"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  {item}
+                </motion.a>
+              ))}
+              <Link 
+                href="/projects"
+                className="block py-2 px-4 text-[#2A2A2A] hover:bg-[#FFD700]/10 rounded-lg transition-colors duration-200"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Projects
+              </Link>
+            </div>
+          </motion.div>
         </motion.div>
       </nav>
  

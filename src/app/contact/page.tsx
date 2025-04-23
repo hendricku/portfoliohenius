@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Link from 'next/link';
 import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
+import Navbar from '@/components/Navbar';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -19,6 +20,7 @@ export default function Contact() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-[#0F172A] to-[#1E293B] relative overflow-hidden">
+      <Navbar />
       {/* Enhanced decorative elements */}
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[100px]"></div>

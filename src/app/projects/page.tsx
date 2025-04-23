@@ -3,10 +3,12 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import Navbar from '@/components/Navbar';
 
 export default function Projects() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-[#1A1A2E] to-[#16213E] relative overflow-hidden">
+      <Navbar />
       {/* Enhanced decorative elements */}
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
       <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/20 rounded-full blur-[120px]"></div>
@@ -62,14 +64,16 @@ export default function Projects() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Jialu Global</h3>
+              <h3 className="text-2xl font-bold text-white mb-3">Jia Lu Global Church</h3>
               <p className="text-white/80 mb-6">
-                A modern web platform showcasing global services and solutions.
+                A modern church website built with Next.js, featuring service times, ministries, and community events. 
+                Designed with a focus on accessibility and user engagement.
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="px-3 py-1 bg-white/20 rounded-full text-white text-sm">Next.js</span>
                 <span className="px-3 py-1 bg-white/20 rounded-full text-white text-sm">React</span>
-                <span className="px-3 py-1 bg-white/20 rounded-full text-white text-sm">Tailwind</span>
+                <span className="px-3 py-1 bg-white/20 rounded-full text-white text-sm">Tailwind CSS</span>
+                <span className="px-3 py-1 bg-white/20 rounded-full text-white text-sm">Framer Motion</span>
               </div>
               <motion.a
                 href="https://jialuglobal.vercel.app/"
@@ -109,14 +113,16 @@ export default function Projects() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Flappy Crypto Game</h3>
+              <h3 className="text-2xl font-bold text-white mb-3">Crypto Flappy Frontend</h3>
               <p className="text-white/80 mb-6">
-                An engaging crypto-themed Flappy Bird game with modern mechanics.
+                A cryptocurrency-themed frontend interface combining gaming elements with crypto functionalities. 
+                Built with modern web technologies for enhanced user experience.
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
-                <span className="px-3 py-1 bg-white/20 rounded-full text-white text-sm">JavaScript</span>
-                <span className="px-3 py-1 bg-white/20 rounded-full text-white text-sm">HTML5</span>
-                <span className="px-3 py-1 bg-white/20 rounded-full text-white text-sm">CSS3</span>
+                <span className="px-3 py-1 bg-white/20 rounded-full text-white text-sm">Next.js</span>
+                <span className="px-3 py-1 bg-white/20 rounded-full text-white text-sm">Tailwind CSS</span>
+                <span className="px-3 py-1 bg-white/20 rounded-full text-white text-sm">TypeScript</span>
+                <span className="px-3 py-1 bg-white/20 rounded-full text-white text-sm">Framer Motion</span>
               </div>
               <motion.a
                 href="https://flappygamecrypto.vercel.app/"
